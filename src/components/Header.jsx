@@ -1,10 +1,11 @@
-
-const Header = () => {
+export default function Header(props) {
+  const { handleToggleMenu } = props
   return (
-    <div className="header">
-        <h1 className="logo">Shubh's Pokedex</h1>
-    </div>
+      <header>
+          <button onClick={handleToggleMenu} className="open-nav-button">
+              <i className="fa-solid fa-bars"></i>
+          </button>
+          <h1 className="text-gradient">Pokédex</h1>
+      </header>
   )
 }
-
-export default Header

@@ -1,19 +1,32 @@
 import Header from "./components/Header"
 import PokeCard from "./components/PokeCard"
 import SideNav from "./components/SideNav"
+import './fanta.css'
 
+import { useState } from 'react'
 
-import './App.css'
+function App() {
+  const [selectedPokemon, setSelectedPokemon] = useState(0)
+  const [showSideMenu, setShowSideMenu] = useState(true) // this does the opposite of what it should do (ie, when showSideMenu it true, it's actually false)
 
-const App = () => {
+  function handleToggleMenu() {
+    setShowSideMenu(!showSideMenu)
+  }
+
+  function handleCloseMenu() {
+    setShowSideMenu(true)
+  }
+
   return (
-    <div className="main">
-      <div className="container">
-      <Header/>
-    <SideNav/>
-    <PokeCard/>
-      </div>
-    </div>
+    <>
+      <Header handleToggleMenu={handleToggleMenu} />
+      <SideNav
+        showSideMenu={showSideMenu}
+        selectedPokemon={selectedPokemon}
+        setSelectedPokemon={setSelectedPokemon}
+        handleCloseMenu={handleCloseMenu} />
+      <PokeCard selectedPokemon={selectedPokemon} />
+    </>
   )
 }
 
